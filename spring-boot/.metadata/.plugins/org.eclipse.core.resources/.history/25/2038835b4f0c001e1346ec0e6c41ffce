@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.devfun.settingweb_boot.dao.StatisticMapper">
+    <select id="selectYearLogin" parameterType="String" resultType="HashMap">
+        select count(*) as totCnt
+        from statistic.requestinfo ri
+        where left(ri.createDate, 2) = #{year};
+    </select>
+    
+    <!-- 월별 접속자 수 -->
+    <select id="selectMonthLogin" parameterType="String" resultType="HashMap">
+   		select count(*) as totCnt
+        from statistic.requestinfo ri
+        where left(ri.createDate, 4) = #{yearMonth};
+    </select>
+    
+     <!-- 일별 접속자 수 -->
+    <select id="selectDayLogin" parameterType="String" resultType="HashMap">
+   		select count(*) as totCnt
+        from statistic.requestinfo ri
+        where left(ri.createDate, 6) = #{yearMonthDay};
+    </select>
+    
+     <!-- 평균 하루 로그인 수 -->
+    <select id="selectAvgDailyLogin" parameterType="String" resultType="HashMap">
+    	select avg(dailyCount) as avgCount
+    	from (
+    		select count(*) as dailyCount
+    		from statistic.requestinfo ri
+    		where left(ri.createDate, 6) = #{yearMonthDay)
+    		group by left(ri.createDate, 6)
+    	)as dailyCounts;
+   		
+    </select>
+    
+     <!-- 휴일을 제외한 로그인 수 -->
+    <select id="" parameterType="String" resultType="HashMap">
+   		
+    </select>
+    
+     <!-- 부서별  월별 로그인 수 -->
+    <select id="selectDepartmentMonthlyLogin" parameterType="String" resultType="HashMap">
+   		select department, count(*) as totCnt
+        from statistic.requestinfo ri
+        where left(ri.createDate, 6) = #{yearMonth}
+        group by department;
+    </select>
+</mapper>
