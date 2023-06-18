@@ -97,3 +97,5 @@ VALUES
   (99, 'L', 'UUU', '1908150425'),
   (100, 'O', 'VVV', '1908141310');
   
+UPDATE statistic.requestInfo
+SET createDate = REPLACE(createDate, '19', '21');

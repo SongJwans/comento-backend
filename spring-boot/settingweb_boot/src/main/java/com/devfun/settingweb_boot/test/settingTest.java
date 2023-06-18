@@ -24,11 +24,33 @@ public class settingTest {
     private StatisticService service;
     
     @ResponseBody 
-    @RequestMapping("/sqlyearStatistic")
-    public Map<String, Object> sqltest(String year) throws Exception{ 
+    @RequestMapping("/year")
+    public Map<String, Object> sqlYearTest(String year) throws Exception{ 
         
         return service.yearloginNum(year);
     }
+    
+    @ResponseBody
+    @RequestMapping("/month")
+    public  Map<String, Object> sqlMonthTest(String yearMonth) throws Exception{ 
+       
+        return service.monthloginNum(yearMonth);
+    }
+    
+    @ResponseBody
+    @RequestMapping("/day")
+    public  Map<String, Object> sqlDayTest(String yearMonthDay) throws Exception{ 
+       
+        return service.dayloginNum(yearMonthDay);
+    }
+    
+    @ResponseBody
+    @RequestMapping("/")
+    public  Map<String, Object> sqlAll() throws Exception{ 
+        
+        return service.All();
+    }
+    
     
     @RequestMapping("/test") 
     public ModelAndView test() throws Exception{ 

@@ -4,6 +4,13 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.devfun.settingweb_boot.dao.StatisticMapper">
+
+ 	<select id="selectAll" resultType="HashMap">
+        select *
+        from statistic.requestinfo 
+        
+    </select>
+    
     <select id="selectYearLogin" parameterType="String" resultType="HashMap">
         select count(*) as totCnt
         from statistic.requestinfo ri
